@@ -1,8 +1,8 @@
 {
   "name": "@hexlet/code",
   "version": "1.0.0",
+  "description": "program for compares two files and shows a difference",
   "type": "module",
-  "description": "New project",
   "main": "index.js",
   "bin": {
     "gendiff": "bin/gendiff.js"
@@ -15,5 +15,8 @@
   "devDependencies": {
     "eslint": "file:8.57.0@eslint/create-config@1.0.0",
     "globals": "^15.9.0"
+  },
+  "dependencies": {
+    "commander": "^12.1.0"
   }
 }
