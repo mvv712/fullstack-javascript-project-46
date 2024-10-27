@@ -8,9 +8,9 @@
     "gendiff": "bin/gendiff.js"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "npx jest"
   },
-  "author": "",
+  "author": "Maksimova Vera",
   "license": "ISC",
   "devDependencies": {
     "eslint": "file:8.57.0@eslint/create-config@1.0.0",
