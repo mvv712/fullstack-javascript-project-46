@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 import { program } from 'commander';
-import { diffFiles } from '../src/index.js';
+import { compareFiles } from '../src/index.js';
 
 program
  .name('gendiff')
@@ -12,6 +12,6 @@ program
  .option('-f, --format [type]', 'output format')
  .argument('<filepath1>')
  .argument('<filepath2>')
- .action(diffFiles);
+ .action(compareFiles);
 
 program.parse();
