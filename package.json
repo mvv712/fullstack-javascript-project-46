@@ -14,7 +14,8 @@
   "license": "ISC",
   "devDependencies": {
     "eslint": "file:8.57.0@eslint/create-config@1.0.0",
-    "globals": "^15.9.0"
+    "globals": "^15.9.0",
+    "jest": "^29.7.0"
   },
   "dependencies": {
     "commander": "^12.1.0",

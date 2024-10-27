@@ -1,0 +1,12 @@
+name: actions
+on: push
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps: 
+      - uses: actions/checkout@v4
+      - run: make install
+      - run: make lint
+      - name: Test & publish code coverage
+        env:
+          CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
