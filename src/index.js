@@ -1,5 +1,5 @@
-import { getData } from '../src/utils.js';
 import _ from 'lodash';
+import { getData } from './utils.js';
 
 const createComparisonTree = (file1, file2) => {
   const keys1 = Object.keys(file1);
@@ -25,11 +25,11 @@ const createComparisonTree = (file1, file2) => {
   result += '\n}';
 
   return result;
-}
+};
 
 const compareFiles = (filepath1, filepath2) => {
   const file1 = getData(filepath1);
-  const file2 = getData(filepath2);  
+  const file2 = getData(filepath2);
 
   return createComparisonTree(file1, file2);
 };
