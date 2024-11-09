@@ -1,12 +1,22 @@
-import fs from 'fs';
+import path from 'path';
+import { composeFilepath, readFile } from '../src/utils.js';
+import { getParser } from '../src/parsers.js';
 import { compareFiles } from '../src/index.js';
 
-test('compareFiles', () => {
-	const file1 = fs.readFileSync(`${__dirname}/../__fixtures__/file1.json`, 'utf-8');
-	const file2 = fs.readFileSync(`${__dirname}/../__fixtures__/file2.json`, 'utf-8');
+const __dirname = composeFilepath('__tests__');
+const getCurrentPath = (filename) => path.join(__dirname, '..', '__fixtures__', filename);
+
+const types = [
+	['json', 'json'],
+	['yaml', 'yaml']
+];
+
+test.each(types)('gendiff filepath1.%s filepath2.%s', (type1, type2) => {
+	const file1 = getCurrentPath(`file1.${type1}`);
+	const file2 = getCurrentPath(`file2.${type2}`);
 
 	const result = compareFiles(file1, file2);
-	const expected = '{\n- follow: false\n  host: hexlet.io\n- proxy: 123.234.53.22\n- timeout: 50\n+ timeout: 20\n+ verbose: true\n}';
+	const expected = readFile(getCurrentPath('result.txt'));
 
 	expect(result).toEqual(expected);
-});
+ });
