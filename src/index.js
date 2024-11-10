@@ -1,6 +1,6 @@
 import _ from 'lodash';
 import { getData } from './utils.js';
-import getFormatTree from './formatters/index.js';
+import getFormatter from './formatters/index.js';
 
 const createComparisonTree = (file1, file2) => {
   const keys1 = Object.keys(file1);
@@ -34,5 +34,7 @@ export default (filepath1, filepath2, format = 'stylish') => {
   const file2 = getData(filepath2);
 
   const tree = createComparisonTree(file1, file2);
-  return getFormatTree(tree, format);
+  const formatter = getFormatter(format);
+
+  return formatter(tree);
 };

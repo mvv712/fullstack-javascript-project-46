@@ -1,14 +1,17 @@
+import _ from 'lodash';
 import getStylishTree from './stylish.js';
 import getPlainTree from './plain.js';
 import getJsonTree from './json.js';
 
-export default (tree, format) => {
-  if (format === 'stylish') {
-    return getStylishTree(tree);
-  } if (format === 'plain') {
-    return getPlainTree(tree);
-  } if (format === 'json') {
-    return getJsonTree(tree);
+const formatters = {
+  stylish: getStylishTree,
+  plain: getPlainTree,
+  json: getJsonTree,
+};
+
+export default (format) => {
+  if (!(_.has(formatters, format))) {
+    throw new Error(`Cannot get formatter ${format}`);
   }
-  throw new Error(`Cannot get formatter ${format}`);
+  return formatters[format];
 };
