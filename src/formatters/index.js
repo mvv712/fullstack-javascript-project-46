@@ -5,11 +5,10 @@ import getJsonTree from './json.js';
 export default (tree, format) => {
   if (format === 'stylish') {
     return getStylishTree(tree);
-  } else if (format === 'plain') {
+  } if (format === 'plain') {
     return getPlainTree(tree);
-  } else if (format === 'json') {
+  } if (format === 'json') {
     return getJsonTree(tree);
-  } else {
-    throw new Error(`Cannot get formatter ${format}`);
   }
+  throw new Error(`Cannot get formatter ${format}`);
 };
