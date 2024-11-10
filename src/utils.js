@@ -1,6 +1,6 @@
 import fs from 'fs';
 import path from 'path';
-import { getParser } from './parsers.js';
+import getParser from './parsers.js';
 
 const composeFilepath = (filepath) => path.resolve(process.cwd(), filepath);
 
