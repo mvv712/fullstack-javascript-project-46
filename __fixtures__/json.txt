@@ -1,0 +1,125 @@
+[
+  {
+    "stat": "nested",
+    "key": "common",
+    "value": [
+      {
+        "stat": "received",
+        "key": "follow",
+        "value": false
+      },
+      {
+        "stat": "matched",
+        "key": "setting1",
+        "value": "Value 1"
+      },
+      {
+        "stat": "expected",
+        "key": "setting2",
+        "value": 200
+      },
+      {
+        "stat": "exchanged",
+        "key": "setting3",
+        "value": {
+          "old": true,
+          "new": null
+        }
+      },
+      {
+        "stat": "received",
+        "key": "setting4",
+        "value": "blah blah"
+      },
+      {
+        "stat": "received",
+        "key": "setting5",
+        "value": {
+          "key5": "value5"
+        }
+      },
+      {
+        "stat": "nested",
+        "key": "setting6",
+        "value": [
+          {
+            "stat": "nested",
+            "key": "doge",
+            "value": [
+              {
+                "stat": "exchanged",
+                "key": "wow",
+                "value": {
+                  "old": "",
+                  "new": "so much"
+                }
+              }
+            ]
+          },
+          {
+            "stat": "matched",
+            "key": "key",
+            "value": "value"
+          },
+          {
+            "stat": "received",
+            "key": "ops",
+            "value": "vops"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "stat": "nested",
+    "key": "group1",
+    "value": [
+      {
+        "stat": "exchanged",
+        "key": "baz",
+        "value": {
+          "old": "bas",
+          "new": "bars"
+        }
+      },
+      {
+        "stat": "matched",
+        "key": "foo",
+        "value": "bar"
+      },
+      {
+        "stat": "exchanged",
+        "key": "nest",
+        "value": {
+          "old": {
+            "key": "value"
+          },
+          "new": "str"
+        }
+      }
+    ]
+  },
+  {
+    "stat": "expected",
+    "key": "group2",
+    "value": {
+      "abc": 12345,
+      "deep": {
+        "id": 45
+      }
+    }
+  },
+  {
+    "stat": "received",
+    "key": "group3",
+    "value": {
+      "deep": {
+        "id": {
+          "number": 45
+        }
+      },
+      "fee": 100500
+    }
+  }
+]
+
