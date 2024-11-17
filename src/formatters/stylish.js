@@ -8,8 +8,6 @@ const markers = {
 
 const getSpaces = (depth, spaces = 4, offset = 2) => ' '.repeat(depth * spaces - offset);
 
-const buildLine = (depth, status, key, value) => `${getSpaces(depth)}${markers[status]} ${key}: ${itemToText(value, depth + 1)}`;
-
 const itemToText = (item, depth) => {
   if (!_.isObject(item)) {
     return `${item}`;
@@ -17,10 +15,12 @@ const itemToText = (item, depth) => {
 
   const items = Object
     .entries(item)
-    .map(([key, value]) => buildLine(depth, 'matched', key, value));
+    .map(([key, value]) => `${getSpaces(depth)}${markers.matched} ${key}: ${itemToText(value, depth + 1)}`);
 
   return `{\n${items.join('\n')}\n${getSpaces(depth, 4, 4)}}`;
 };
+
+const buildLine = (depth, status, key, value) => `${getSpaces(depth)}${markers[status]} ${key}: ${itemToText(value, depth + 1)}`;
 
 export default (tree) => {
   const iter = (curNode, depth) => {
