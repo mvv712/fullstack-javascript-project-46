@@ -7,9 +7,9 @@ const createComparisonTree = (file1, file2) => {
   const keys2 = Object.keys(file2);
   const keys = _.union(keys1, keys2);
 
-  keys.sort((prev, next) => (prev > next ? 1 : -1));
+  const sortKeys = _.sortBy(keys);
 
-  return keys.map((key) => {
+  return sortKeys.map((key) => {
     if (!_.has(file1, key)) {
       return { stat: 'received', key, value: file2[key] };
     }
