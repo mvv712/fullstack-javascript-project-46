@@ -17,7 +17,7 @@ export default (tree) => {
           return iter(value, `${fullName}${key}.`);
         } if (status === 'received') {
           return `Property '${fullName}${key}' was added with value: ${getValueText(value)}`;
-        } if (stat === 'expected') {
+        } if (status === 'expected') {
           return `Property '${fullName}${key}' was removed`;
         } if (status === 'exchanged') {
           return `Property '${fullName}${key}' was updated. From ${getValueText(value.old)} to ${getValueText(value.new)}`;
