@@ -26,20 +26,20 @@ export default (tree) => {
   const iter = (curNode, depth) => {
     const items = curNode
       .map((node) => {
-        const { stat, key, value } = node;
+        const { status, key, value } = node;
 
-        if (stat === 'nested') {
+        if (status === 'nested') {
           return buildLine(depth, 'matched', key, iter(value, depth + 1));
         }
-        if (['received', 'expected', 'matched'].includes(stat)) {
-          return buildLine(depth, stat, key, value);
+        if (['received', 'expected', 'matched'].includes(status)) {
+          return buildLine(depth, status, key, value);
         }
-        if (stat === 'exchanged') {
+        if (status === 'exchanged') {
           const expected = buildLine(depth, 'expected', key, value.old);
           const received = buildLine(depth, 'received', key, value.new);
           return `${expected}\n${received}`;
         }
-        throw new Error(`Cannot get stat ${stat}`);
+        throw new Error(`Cannot get status ${status}`);
       });
 
     return `{\n${items.join('\n')}\n${getSpaces(depth, 4, 4)}}`;

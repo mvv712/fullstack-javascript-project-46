@@ -1,6 +1,5 @@
 import fs from 'fs';
 import path from 'path';
-import getParser from './parsers.js';
 
 const composeFilepath = (filepath) => path.resolve(process.cwd(), filepath);
 
@@ -11,14 +10,6 @@ const readFile = (filepath, encoding = 'utf8') => {
 
 const getFileType = (filepath) => path.extname(filepath).split('.')[1];
 
-const getData = (filepath) => {
-  const fileType = getFileType(filepath);
-  const file = readFile(filepath);
-
-  const parser = getParser(fileType);
-  return parser(file);
-};
-
 export {
-  composeFilepath, readFile, getFileType, getData,
+  composeFilepath, readFile, getFileType,
 };

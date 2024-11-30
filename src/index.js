@@ -1,6 +1,15 @@
 import _ from 'lodash';
-import { getData } from './utils.js';
+import getParser from './parsers.js';
+import { getFileType, readFile } from './utils.js';
 import getFormatter from './formatters/index.js';
+
+const getData = (filepath) => {
+  const fileType = getFileType(filepath);
+  const file = readFile(filepath);
+
+  const parser = getParser(fileType);
+  return parser(file);
+};
 
 const createComparisonTree = (file1, file2) => {
   const keys1 = Object.keys(file1);
@@ -11,21 +20,21 @@ const createComparisonTree = (file1, file2) => {
 
   return sortKeys.map((key) => {
     if (!_.has(file1, key)) {
-      return { stat: 'received', key, value: file2[key] };
+      return { status: 'received', key, value: file2[key] };
     }
     if (!_.has(file2, key)) {
-      return { stat: 'expected', key, value: file1[key] };
+      return { status: 'expected', key, value: file1[key] };
     }
     if (file1[key] === file2[key]) {
-      return { stat: 'matched', key, value: file1[key] };
+      return { status: 'matched', key, value: file1[key] };
     }
 
     if (_.isPlainObject(file1[key]) && _.isPlainObject(file2[key])) {
       const value = createComparisonTree(file1[key], file2[key]);
-      return { stat: 'nested', key, value };
+      return { status: 'nested', key, value };
     }
 
-    return { stat: 'exchanged', key, value: { old: file1[key], new: file2[key] } };
+    return { status: 'exchanged', key, value: { old: file1[key], new: file2[key] } };
   });
 };
 
