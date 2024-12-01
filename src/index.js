@@ -1,14 +1,13 @@
 import _ from 'lodash';
-import getParser from './parsers.js';
+import getParserTree from './parsers.js';
 import { getFileType, readFile } from './utils.js';
-import getFormatter from './formatters/index.js';
+import getFormatTree from './formatters/index.js';
 
 const getData = (filepath) => {
-  const fileType = getFileType(filepath);
   const file = readFile(filepath);
+  const fileType = getFileType(filepath);
 
-  const parser = getParser(fileType);
-  return parser(file);
+  return getParserTree(fileType, file);
 };
 
 const createComparisonTree = (file1, file2) => {
@@ -43,7 +42,6 @@ export default (filepath1, filepath2, format = 'stylish') => {
   const file2 = getData(filepath2);
 
   const tree = createComparisonTree(file1, file2);
-  const formatter = getFormatter(format);
 
-  return formatter(tree);
+  return getFormatTree(format, tree);
 };
