@@ -46,7 +46,7 @@ export default (tree) => {
             const received = buildLine(depth, 'received', key, value.new);
             return `${expected}\n${received}`;
           }
-          default {
+          default: {
             throw new Error(`Cannot get status ${status}`);
           }
         }

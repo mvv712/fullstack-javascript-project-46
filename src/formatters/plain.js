@@ -13,7 +13,6 @@ export default (tree) => {
       .flatMap((node) => {
         const { status, key, value } = node;
 
-
         switch (status) {
           case 'nested': {
             return iter(value, `${fullName}${key}.`);
@@ -34,7 +33,7 @@ export default (tree) => {
             throw new Error(`Cannot get status ${status}`);
           }
         };
-      });
+      })
 
     return items.join('\n');
   };
