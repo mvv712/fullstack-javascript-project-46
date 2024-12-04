@@ -7,7 +7,7 @@ const getData = (filepath) => {
   const file = readFile(filepath);
   const fileType = getFileType(filepath);
 
-  return getParserTree(fileType, file);
+  return getParserTree(file, fileType);
 };
 
 const createComparisonTree = (file1, file2) => {
@@ -43,5 +43,5 @@ export default (filepath1, filepath2, format = 'stylish') => {
 
   const tree = createComparisonTree(file1, file2);
 
-  return getFormatTree(format, tree);
+  return getFormatTree(tree, format);
 };
