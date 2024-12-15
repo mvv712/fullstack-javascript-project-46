@@ -4,7 +4,7 @@ const getValueText = (value) => {
   if (_.isObject(value)) {
     return '[complex value]';
   }
-  return _.isString(value) ? `'${value}'` : value;
+  return _.isString(value) ? `'${value}'` : String(value);
 };
 
 export default (tree) => {
