@@ -34,13 +34,22 @@ export default (tree) => {
           case 'nested': {
             return buildLine(depth, 'matched', key, iter(children, depth + 1));
           }
+          case 'received': {
+            return buildLine(depth, status, key, value);
+          }
+          case 'expected': {
+            return buildLine(depth, status, key, value);
+          }
+          case 'matched': {
+            return buildLine(depth, status, key, value);
+          }
           case 'exchanged': {
             const expected = buildLine(depth, 'expected', key, value.old);
             const received = buildLine(depth, 'received', key, value.new);
             return `${expected}\n${received}`;
           }
           default: {
-            return buildLine(depth, status, key, value);
+            throw new Error(`Cannot get status ${status}`);
           }
         }
       });
