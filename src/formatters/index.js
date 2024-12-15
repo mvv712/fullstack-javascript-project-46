@@ -9,7 +9,7 @@ const formatters = {
   json: getJsonTree,
 };
 
-export default (tree, format) => {
+export default (tree, format = null) => {
   if (!(_.has(formatters, format))) {
     throw new Error(`Cannot get formatter ${format}`);
   }
