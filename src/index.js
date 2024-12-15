@@ -24,7 +24,7 @@ const createComparisonTree = (file1, file2) => {
     if (!_.has(file2, key)) {
       return { status: 'expected', key, value: file1[key] };
     }
-    if (file1[key] === file2[key]) {
+    if (_.isEqual(file1[key], file2[key])) {
       return { status: 'matched', key, value: file1[key] };
     }
 
