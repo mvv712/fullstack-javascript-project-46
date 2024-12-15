@@ -26,8 +26,8 @@ export default (tree) => {
           case 'exchanged': {
             return `Property '${fullName}${key}' was updated. From ${getValueText(value.old)} to ${getValueText(value.new)}`;
           }
-          case 'matched' {
-            return []
+          case 'matched': {
+            return [];
           }
           default: {
             throw new Error(`Cannot get status ${status}`);
