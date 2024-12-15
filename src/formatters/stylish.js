@@ -26,11 +26,11 @@ export default (tree) => {
   const iter = (curNode, depth) => {
     const items = curNode
       .map((node) => {
-        const { status, key, value } = node;
+        const { status, key, value, children } = node;
 
         switch (status) {
           case 'nested': {
-            return buildLine(depth, 'matched', key, iter(value, depth + 1));
+            return buildLine(depth, 'matched', key, iter(children, depth + 1));
           }
           case 'received': {
             return buildLine(depth, status, key, value);

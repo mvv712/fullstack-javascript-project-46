@@ -11,11 +11,11 @@ export default (tree) => {
   const iter = (curNode, fullName = '') => {
     const items = curNode
       .flatMap((node) => {
-        const { status, key, value } = node;
+        const { status, key, value, children } = node;
 
         switch (status) {
           case 'nested': {
-            return iter(value, `${fullName}${key}.`);
+            return iter(children, `${fullName}${key}.`);
           }
           case 'received': {
             return `Property '${fullName}${key}' was added with value: ${getValueText(value)}`;
