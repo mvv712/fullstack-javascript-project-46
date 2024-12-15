@@ -7,11 +7,10 @@ const parsers = {
   yml: yaml.load,
 };
 
-export default (fileType, tree) => {
+export default (tree, fileType) => {
   if (!(_.has(parsers, fileType))) {
     throw new Error(`Cannot get parser for "${fileType}"`);
   }
 
-  const getParser = parsers[fileType];
-  return getParser(tree);
+  return parsers[fileType](tree);
 };

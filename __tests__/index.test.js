@@ -14,12 +14,28 @@ const types = [
 
 const formats = ['stylish', 'plain', 'json'];
 
+const isJSON = (data) => {
+  try {
+    JSON.parse(JSON.stringify(data));
+  } catch {
+    return false;
+  }
+
+  return true;
+};
+
 describe('get formatter', () => {
   test.each(formats)('%s', (format) => {
-    expect(getFormatter(format) && true).toBeTruthy();
+    const expectedValue = {
+      stylish: '{\n\n}',
+      plain: '',
+      json: '[]',
+    };
+    console.log(getFormatter([], format));
+    expect(getFormatter([], format)).toEqual(expectedValue[format]);
   });
   test('wrong format', () => {
-    expect(() => getFormatter('wrong')).toThrow();
+    expect(() => getFormatter([], 'wrong')).toThrow();
   });
 });
 
@@ -29,12 +45,14 @@ describe('get parser', () => {
       'json',
       'yaml',
       'yml',
-    ])('for %s', (ext) => {
-      expect(getParser(ext) && true).toBeTruthy();
+    ])('for %s', (type) => {
+      const content = getCurrentPath(`file1.${type}`);
+      expect(isJSON(content)).toBeTruthy();
+      expect(content).toEqual(JSON.parse(JSON.stringify(content)));
     });
 
-  test('wrong extension', () => {
-    expect(() => getParser('wrong')).toThrow();
+  test('wrong type', () => {
+    expect(() => getParser([], 'wrong')).toThrow();
   });
 });
 

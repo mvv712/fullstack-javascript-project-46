@@ -11,11 +11,13 @@ export default (tree) => {
   const iter = (curNode, fullName = '') => {
     const items = curNode
       .flatMap((node) => {
-        const { status, key, value } = node;
+        const {
+          status, key, value, children,
+        } = node;
 
         switch (status) {
           case 'nested': {
-            return iter(value, `${fullName}${key}.`);
+            return iter(children, `${fullName}${key}.`);
           }
           case 'received': {
             return `Property '${fullName}${key}' was added with value: ${getValueText(value)}`;
@@ -24,7 +26,7 @@ export default (tree) => {
             return `Property '${fullName}${key}' was removed`;
           }
           case 'exchanged': {
-            return `Property '${fullName}${key}' was updated. From ${getValueText(value.old)} to ${getValueText(value.new)}`;
+            return `Property '${fullName}${key}' was updated. From ${getValueText(value.first)} to ${getValueText(value.second)}`;
           }
           default: {
             return [];

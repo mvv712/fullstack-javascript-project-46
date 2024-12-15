@@ -7,7 +7,7 @@ const getData = (filepath) => {
   const file = readFile(filepath);
   const fileType = getFileType(filepath);
 
-  return getParserTree(fileType, file);
+  return getParserTree(file, fileType);
 };
 
 const createComparisonTree = (file1, file2) => {
@@ -29,11 +29,11 @@ const createComparisonTree = (file1, file2) => {
     }
 
     if (_.isPlainObject(file1[key]) && _.isPlainObject(file2[key])) {
-      const value = createComparisonTree(file1[key], file2[key]);
-      return { status: 'nested', key, value };
+      const children = createComparisonTree(file1[key], file2[key]);
+      return { status: 'nested', key, children };
     }
 
-    return { status: 'exchanged', key, value: { old: file1[key], new: file2[key] } };
+    return { status: 'exchanged', key, value: { first: file1[key], second: file2[key] } };
   });
 };
 
@@ -43,5 +43,5 @@ export default (filepath1, filepath2, format = 'stylish') => {
 
   const tree = createComparisonTree(file1, file2);
 
-  return getFormatTree(format, tree);
+  return getFormatTree(tree, format);
 };
