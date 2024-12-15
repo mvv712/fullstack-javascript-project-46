@@ -10,7 +10,7 @@ const getSpaces = (depth, spaces = 4, offset = 2) => ' '.repeat(depth * spaces -
 
 const itemToText = (item, depth) => {
   if (!_.isObject(item)) {
-    return `${item}`;
+    return String(item);
   }
 
   const items = Object
