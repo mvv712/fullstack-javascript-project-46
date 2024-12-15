@@ -11,9 +11,7 @@ export default (tree) => {
   const iter = (curNode, fullName = '') => {
     const items = curNode
       .flatMap((node) => {
-        const {
-          status, key, value, children,
-        } = node;
+        const { status, key, value, children } = node;
 
         switch (status) {
           case 'nested': {

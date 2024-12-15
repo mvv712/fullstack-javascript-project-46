@@ -26,9 +26,7 @@ export default (tree) => {
   const iter = (curNode, depth) => {
     const items = curNode
       .map((node) => {
-        const {
-          status, key, value, children,
-        } = node;
+        const { status, key, value, children } = node;
 
         switch (status) {
           case 'nested': {
