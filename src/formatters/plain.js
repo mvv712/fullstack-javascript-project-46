@@ -4,7 +4,7 @@ const getValueText = (value) => {
   if (_.isObject(value)) {
     return '[complex value]';
   }
-  return String(value);
+  return _.isString(value) ? `'${value}'` : value;
 };
 
 export default (tree) => {
@@ -13,27 +13,18 @@ export default (tree) => {
       .flatMap((node) => {
         const { status, key, value } = node;
 
-
-        switch (status) {
-          case 'nested': {
-            return iter(value, `${fullName}${key}.`);
-          }
-          case 'received': {
-            return `Property '${fullName}${key}' was added with value: ${getValueText(value)}`;
-          }
-          case 'expected': {
-            return `Property '${fullName}${key}' was removed`;
-          }
-          case 'exchanged': {
-            return `Property '${fullName}${key}' was updated. From ${getValueText(value.old)} to ${getValueText(value.new)}`;
-          }
-          case 'matched': {
-            return [];
-          }
-          default: {
-            throw new Error(`Cannot get status ${status}`);
-          }
-        };
+        if (status === 'nested') {
+          return iter(value, `${fullName}${key}.`);
+        } if (status === 'received') {
+          return `Property '${fullName}${key}' was added with value: ${getValueText(value)}`;
+        } if (status === 'expected') {
+          return `Property '${fullName}${key}' was removed`;
+        } if (status === 'exchanged') {
+          return `Property '${fullName}${key}' was updated. From ${getValueText(value.old)} to ${getValueText(value.new)}`;
+        } if (status === 'matched') {
+          return [];
+        }
+        throw new Error(`Cannot get status ${status}`);
       });
 
     return items.join('\n');
