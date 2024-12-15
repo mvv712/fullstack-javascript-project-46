@@ -28,18 +28,28 @@ export default (tree) => {
       .map((node) => {
         const { status, key, value } = node;
 
-        if (status === 'nested') {
-          return buildLine(depth, 'matched', key, iter(value, depth + 1));
+        switch (status) {
+          case 'nested': {
+            return buildLine(depth, 'matched', key, iter(value, depth + 1));
+          }
+          case 'received': {
+            return buildLine(depth, status, key, value);
+          }
+          case 'expected': {
+            return buildLine(depth, status, key, value);
+          }
+          case 'matched': {
+            return buildLine(depth, status, key, value);
+          }
+          case 'exchanged': {
+            const expected = buildLine(depth, 'expected', key, value.old);
+            const received = buildLine(depth, 'received', key, value.new);
+            return `${expected}\n${received}`;
+          }
+          default: {
+            throw new Error(`Cannot get status ${status}`);
+          }
         }
-        if (['received', 'expected', 'matched'].includes(status)) {
-          return buildLine(depth, status, key, value);
-        }
-        if (status === 'exchanged') {
-          const expected = buildLine(depth, 'expected', key, value.old);
-          const received = buildLine(depth, 'received', key, value.new);
-          return `${expected}\n${received}`;
-        }
-        throw new Error(`Cannot get status ${status}`);
       });
 
     return `{\n${items.join('\n')}\n${getSpaces(depth, 4, 4)}}`;
