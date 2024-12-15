@@ -29,8 +29,8 @@ const createComparisonTree = (file1, file2) => {
     }
 
     if (_.isPlainObject(file1[key]) && _.isPlainObject(file2[key])) {
-      const children = createComparisonTree(file1[key], file2[key]);
-      return { status: 'nested', key, children };
+      const value = createComparisonTree(file1[key], file2[key]);
+      return { status: 'nested', key, value };
     }
 
     return { status: 'exchanged', key, value: { old: file1[key], new: file2[key] } };
