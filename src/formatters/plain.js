@@ -32,8 +32,8 @@ export default (tree) => {
           default: {
             throw new Error(`Cannot get status ${status}`);
           }
-        }
-      });
+        };
+      })
 
     return items.join('\n');
   };
