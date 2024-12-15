@@ -20,7 +20,7 @@ export default (tree) => {
           case 'received': {
             return `Property '${fullName}${key}' was added with value: ${getValueText(value)}`;
           }
-          case'expected': {
+          case 'expected': {
             return `Property '${fullName}${key}' was removed`;
           }
           case 'exchanged': {
