@@ -33,7 +33,7 @@ const createComparisonTree = (file1, file2) => {
       return { status: 'nested', key, children };
     }
 
-    return { status: 'exchanged', key, value: { first: file1[key], second: file2[key] } };
+    return { status: 'exchanged', key, value: { oldValue: file1[key], newValue: file2[key] } };
   });
 };
 

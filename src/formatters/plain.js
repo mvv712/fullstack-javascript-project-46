@@ -26,7 +26,7 @@ export default (tree) => {
             return `Property '${fullName}${key}' was removed`;
           }
           case 'exchanged': {
-            return `Property '${fullName}${key}' was updated. From ${getValueText(value.first)} to ${getValueText(value.second)}`;
+            return `Property '${fullName}${key}' was updated. From ${getValueText(value.oldValue)} to ${getValueText(value.newValue)}`;
           }
           default: {
             return [];

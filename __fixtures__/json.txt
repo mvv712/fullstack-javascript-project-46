@@ -2,7 +2,7 @@
   {
     "status": "nested",
     "key": "common",
-    "value": [
+    "children": [
       {
         "status": "received",
         "key": "follow",
@@ -22,8 +22,8 @@
         "status": "exchanged",
         "key": "setting3",
         "value": {
-          "old": true,
-          "new": null
+          "oldValue": true,
+          "newValue": null
         }
       },
       {
@@ -41,17 +41,17 @@
       {
         "status": "nested",
         "key": "setting6",
-        "value": [
+        "children": [
           {
             "status": "nested",
             "key": "doge",
-            "value": [
+            "children": [
               {
                 "status": "exchanged",
                 "key": "wow",
                 "value": {
-                  "old": "",
-                  "new": "so much"
+                  "oldValue": "",
+                  "newValue": "so much"
                 }
               }
             ]
@@ -73,13 +73,13 @@
   {
     "status": "nested",
     "key": "group1",
-    "value": [
+    "children": [
       {
         "status": "exchanged",
         "key": "baz",
         "value": {
-          "old": "bas",
-          "new": "bars"
+          "oldValue": "bas",
+          "newValue": "bars"
         }
       },
       {
@@ -91,10 +91,10 @@
         "status": "exchanged",
         "key": "nest",
         "value": {
-          "old": {
+          "oldValue": {
             "key": "value"
           },
-          "new": "str"
+          "newValue": "str"
         }
       }
     ]

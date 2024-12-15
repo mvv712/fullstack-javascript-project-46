@@ -31,7 +31,6 @@ describe('get formatter', () => {
       plain: '',
       json: '[]',
     };
-    console.log(getFormatter([], format));
     expect(getFormatter([], format)).toEqual(expectedValue[format]);
   });
   test('wrong format', () => {

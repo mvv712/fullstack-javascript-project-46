@@ -35,8 +35,8 @@ export default (tree) => {
             return buildLine(depth, 'matched', key, iter(children, depth + 1));
           }
           case 'exchanged': {
-            const expected = buildLine(depth, 'expected', key, value.first);
-            const received = buildLine(depth, 'received', key, value.second);
+            const expected = buildLine(depth, 'expected', key, value.oldValue);
+            const received = buildLine(depth, 'received', key, value.newValue);
             return `${expected}\n${received}`;
           }
           default: {
